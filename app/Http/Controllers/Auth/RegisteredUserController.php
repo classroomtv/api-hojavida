@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserInLms;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,15 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        /*if ($request->lms_id != null && $request->institution_id != null) {
+            UserInLms::create([
+               'user_id' => $user->id,
+               'lms_id' => $request->lms_id,
+               'institution_id' => $request->institution_id,
+            ]);
+        }*/
+
 
         event(new Registered($user));
 
