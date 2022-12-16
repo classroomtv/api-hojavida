@@ -34,6 +34,10 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'last_name' => (isset($request->last_name) && $request->last_name != '') ? $request->last_name : null,
+            'dni' => (isset($request->dni) && $request->dni != '') ? $request->dni : null,
+            'avatar' => (isset($request->avatar) && $request->avatar != '') ? $request->avatar : null,
+
         ]);
 
         if ($request->lms_id != null && $request->institution_id != null) {

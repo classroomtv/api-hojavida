@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,4 +19,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-require __DIR__.'/auth.php';
+
+//Profile Seccion
+Route::get('/profile/info', [UserController::class, 'info'])
+    ->middleware('auth:api')
+    ->name('profile.info');
+
+Route::post('/profile/update', [UserController::class, 'update'])
+    ->middleware('auth:api')
+    ->name('profile.update');
+
+
+require __DIR__ . '/auth.php';
