@@ -15,6 +15,6 @@ class UserInLms extends Model
         'user_id',
         'lms_id',
         'status',
+        'institution_id',
     ];
-
 }
