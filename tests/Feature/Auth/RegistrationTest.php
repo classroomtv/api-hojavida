@@ -9,7 +9,8 @@ class RegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_new_users_can_register()
+    /** @test */
+    public function new_users_can_register()
     {
         $response = $this->post('/register', [
             'name' => 'Test User',
@@ -19,6 +20,25 @@ class RegistrationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertNoContent();
+        $response->assertOk();
+
+        $this->assertDatabaseHas('users', [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
     }
+
+    /** @test */
+    public function name_is_required()
+    {
+        $response = $this->post('/register', [
+            'name' => '',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+        $response->assertSessionHasErrorsIn('name');
+    }
+
 }
