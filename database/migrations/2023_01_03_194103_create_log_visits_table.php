@@ -15,6 +15,9 @@ class CreateLogVisitsTable extends Migration
     {
         Schema::create('log_visits', function (Blueprint $table) {
             $table->id();
+            $table->string('hash');
+            $table->string('data');
+            $table->integer('id_hoja');
             $table->timestamps();
         });
     }
