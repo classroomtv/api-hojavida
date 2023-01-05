@@ -35,5 +35,16 @@ class UserController extends Controller
 
     public function setSocialNetwork(Request $request)
     {
+        $user = User::find(auth()->user()->id);
+        $user->social_network = $request->input('social_network', $user->social_network);
+        $user->save();
+        return UserResource::make($user);
+    }
+
+    public function showProfileInfo(Request $request)
+    {
+        $id = $request->route('id');
+        $profile = User::find($id);
+        return UserResource::make($profile);
     }
 }
