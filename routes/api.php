@@ -83,5 +83,9 @@ Route::get('/cv/get', [HojaVidaController::class, 'get'])
     ->middleware('auth:api')
     ->name('hojas.get');
 
+Route::get('/cv/get/{id}', [HojaVidaController::class, 'getSpecific'])
+    ->middleware('auth:api')
+    ->name('hojas.getByUser');
+
 
 require __DIR__ . '/auth.php';

@@ -15,4 +15,10 @@ class HojaVidaController extends Controller
         $hojas = HojaVida::where('user_id', $user_id)->get();
         return HojaVidaResource::collection($hojas);
     }
+
+    public function getSpecific($id)
+    {
+        $hoja = HojaVida::find($id)->get();
+        return HojaVidaResource::collection($hoja);
+    }
 }
