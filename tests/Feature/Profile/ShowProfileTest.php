@@ -32,7 +32,7 @@ class ShowProfileTest extends TestCase
                 'name' => $user->name,
                 'email' => $user->email,
             ]
-        ])->dump();
+        ]);
         $response->assertStatus(200);
 
     }

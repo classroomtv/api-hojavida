@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
@@ -16,8 +17,9 @@ class UserController extends Controller
         return UserResource::make($user);
     }
 
-    public function update(Request $request)
+    public function update(UpdateProfileRequest $request)
     {
+
         $user = User::find(auth()->user()->id);
         $user->name = $request->input('name', $user->name);
         $user->email = $request->input('email', $user->email);
