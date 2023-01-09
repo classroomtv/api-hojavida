@@ -14,6 +14,17 @@ class HojaVidaResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $data = [
+            "id" => $this->id,
+            "user_id" => $this->user_id,
+            "title" => $this->title,
+            "status" => $this->status,
+            "type" => $this->type,
+            "created_at" => $this->created_at,
+            "updated_at" => $this->updated_at,
+            "views" => count($this->views),
+        ];
+        return $data;
+        #return parent::toArray($request);
     }
 }

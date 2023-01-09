@@ -12,13 +12,13 @@ class HojaVidaController extends Controller
     public function get()
     {
         $user_id = auth()->user()->id;
-        $hojas = HojaVida::where('user_id', $user_id)->get();
+        $hojas = HojaVida::where('user_id', $user_id)->with('views')->get();
         return HojaVidaResource::collection($hojas);
     }
 
     public function getSpecific($id)
     {
-        $hoja = HojaVida::find($id)->get();
+        $hoja = HojaVida::find($id)->with('views')->get();
         return HojaVidaResource::collection($hoja);
     }
 }
