@@ -17,4 +17,9 @@ class UserInLms extends Model
         'status',
         'institution_id',
     ];
+
+    protected $casts = [
+        'created_at' => 'date:d-m-Y',
+        'updated_at' => 'date:d-m-Y',
+    ];
 }
